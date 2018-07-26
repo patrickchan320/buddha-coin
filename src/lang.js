@@ -25,8 +25,28 @@ let lang={
     'test_get_sell_price':'Quote Sell',
     'test_approve':'Approve',
     'test_get_end_time':'Query end time',
-    'test_get_balance':'View INC Balance'
-  }
+    'test_get_balance':'View INC Balance',
+
+      'head_register':'Register',
+      'head_price':'{{price}}',
+      'main_pot':'The last standing contributor will have',
+      'main_contribute':'',
+      'main_thank':''
+  },
+    zh:{
+        'head_register':'登記',
+        'head_not_started':'借庫時辰未到',
+        'head_balance':'{{balance}} 綫香',
+        'head_price':'{{price}} ETH',
+        'icon_eth':'ETH',
+        'icon_inc':'綫香',
+        'icon_time':'剩餘時間',
+        'icon_share':'分享',
+        'main_pot_intro':'最後一名善信將得到',
+        'main_contribute':'供奉',
+        'main_pot':'{{pot}} ETH',
+        'main_thank':'阿彌陀佛，福有尤歸',
+    }
 };
 
 
@@ -36,12 +56,15 @@ i18next
       // React already does escaping
       escapeValue: false,
     },
-    lng: 'en', // 'en' | 'es'
+    lng: 'zh', // 'en' | 'es'
     // Using simple hardcoded resources for simple example
     resources: {
       en: {
         translation: lang.en,
       },
+        zh:{
+        translation: lang.zh,
+        },
       es: {
         translation: {
           age: {label: 'Años',},

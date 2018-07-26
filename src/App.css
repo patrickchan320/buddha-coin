@@ -1,10 +1,70 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+
 .App {
   text-align: center;
+}
+
+#bg{
+  background-image: url(images/bg.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  height:100%;
+  position:absolute;
+  width:100%;
+  opacity: 0.2;
+  z-index:-100;
+}
+
+.header-icon{
+  width:16px;
+  height:16px;
+  margin:8px;
+}
+
+.jumbo{
+  font-size:48px;
+  margin:auto;
+}
+body{
+  color:#555555;
+  text-shadow: 0.5px 0.5px #000000;
+  font-size:16px;
+  font-family: 'Noto Sans T Chinese',sans-serif;
+}
+
+a{
+  color: #555555;
+  text-shadow: 0 0;
+}
+
+a:hover{
+  color: #555555;
+  text-shadow: 0 0;
+}
+
+.page-top{
+  display:flex;
+  line-height:32px;
+  vertical-align: middle;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
+}
+.main-pot{
+  font-size:72px;
+  margin-top: 60px;
+  margin-bottom:60px;
+  color:#555555;
+}
+.staff{
+  width:100px;
+  height: auto;
+}
+
+.main-content{
+  padding-top:100px;
 }
 
 .App-header {
@@ -12,6 +72,15 @@
   height: 150px;
   padding: 20px;
   color: white;
+}
+
+.contribute-btn{
+  width:30%;
+  transition: all 0.2s ease-in-out;
+}
+
+.contribute-btn:hover{
+  box-shadow: 0 0 9px 6px #ffffcc;
 }
 
 .App-title {

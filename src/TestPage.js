@@ -170,13 +170,13 @@ export default  class TestPage extends Component {
   }
 
   getRemainingTime(t){
-    t=parseInt(t);
+    t=parseInt(t,10);
     if(t<0){
       return '00:00:00';
     }
-    let h=parseInt((t-(t%3600))/3600);
+    let h=parseInt((t-(t%3600))/3600,10);
     t%=3600;
-    let m=parseInt((t-(t%60))/60);
+    let m=parseInt((t-(t%60))/60,10);
     t%=60;
     if(h<10){h='0'+h;}
     if(m<10){m='0'+m;}
@@ -189,7 +189,7 @@ export default  class TestPage extends Component {
         <div>{lang.t('test_balance_label')} {lang.t('test_balance',{balance:this.state.balance})}</div>
         <div>{lang.t('test_price_label')} {lang.t('test_price',{buy:this.state.buy,sell:this.state.sell})}</div>
         <div>{lang.t('test_pot')} {lang.t('test_pot_size',{pot:this.state.pot})}</div>
-        <div>{lang.t('test_end')} <span id="remaining_time"></span></div>
+        <div>{lang.t('test_end')} <span id="remaining_time">&nbsp;</span></div>
             <div><Button onClick={()=>{this.onGetINCBalance()}} bsStyle="primary">{lang.t('test_get_balance')}</Button></div>
             <div><Button onClick={()=>{this.onGetINCBuyPrice()}} bsStyle="primary">{lang.t('test_get_buy_price')}</Button></div>
             <div><Button onClick={()=>{this.onGetINCSellPrice()}} bsStyle="primary">{lang.t('test_get_sell_price')}</Button></div>
