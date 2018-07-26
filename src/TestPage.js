@@ -9,7 +9,7 @@ export default  class TestPage extends Component {
 
   constructor(props){
     super(props);
-    this.state={wallet:'',balance:0,buy:0,endTime:0,price:'',pot:0,username:'',referral:''};
+    this.state={wallet:'',balance:0,buy:'',endTime:0,buyWei:0,sellWei:0,sell:'',pot:0,username:'',referral:''};
     this.getWallet();
   }
 
@@ -43,28 +43,42 @@ export default  class TestPage extends Component {
   }
 
 
-  onViewINCBalance(){
+  onGetINCBalance(){
     let contract = this.getIncenseContract();
     contract.methods.balanceOf(this.state.wallet).call({from:this.state.wallet},(err,res)=>{
       this.setState({balance: res});
     });
   }
 
+  onGetINCSellPrice(){
+    let contract = this.getIncenseContract();
+    contract.methods.getSellPrice().call({from:this.state.wallet},(err,res)=>{
+      let wei=new Big(res);
+      let ether=wei.div('1e+18').toPrecision(1)+'';
+      this.setState({sell: ether,sellWei:res});
+    });
+  }
 
-  onViewINCBuyPrice(){
+  onGetINCBuyPrice(){
     let contract = this.getIncenseContract();
     contract.methods.getBuyPrice().call({from:this.state.wallet},(err,res)=>{
       let wei=new Big(res);
       let ether=wei.div('1e+18').toPrecision(1)+'';
-      this.setState({price: ether,wei:res});
+      this.setState({buy: ether,buyWei:res});
     });
   }
 
   onBuyInc(amount){
     let contract = this.getIncenseContract();
-    contract.methods.buy().send({value:this.state.wei*amount,from:this.state.wallet}).on('receipt',(err,res)=>{
+    contract.methods.buy().send({value:this.state.buyWei*amount,from:this.state.wallet}).on('receipt',(err,res)=>{
       this.onViewINCBalance();
+    });
+  }
 
+  onSellInc(amount){
+    let contract = this.getIncenseContract();
+    contract.methods.sell(amount).send({from:this.state.wallet}).on('receipt',(err,res)=>{
+      this.onViewINCBalance();
     });
   }
 
@@ -173,12 +187,14 @@ export default  class TestPage extends Component {
     return (
       <div className="App">
         <div>{lang.t('test_balance_label')} {lang.t('test_balance',{balance:this.state.balance})}</div>
-        <div>{lang.t('test_price_label')} {lang.t('test_price',{price:this.state.price})}</div>
+        <div>{lang.t('test_price_label')} {lang.t('test_price',{buy:this.state.buy,sell:this.state.sell})}</div>
         <div>{lang.t('test_pot')} {lang.t('test_pot_size',{pot:this.state.pot})}</div>
         <div>{lang.t('test_end')} <span id="remaining_time"></span></div>
-            <div><Button onClick={()=>{this.onViewINCBalance()}} bsStyle="primary">{lang.t('test_get_balance')}</Button></div>
-            <div><Button onClick={()=>{this.onViewINCBuyPrice()}} bsStyle="primary">{lang.t('test_get_buy_price')}</Button></div>
+            <div><Button onClick={()=>{this.onGetINCBalance()}} bsStyle="primary">{lang.t('test_get_balance')}</Button></div>
+            <div><Button onClick={()=>{this.onGetINCBuyPrice()}} bsStyle="primary">{lang.t('test_get_buy_price')}</Button></div>
+            <div><Button onClick={()=>{this.onGetINCSellPrice()}} bsStyle="primary">{lang.t('test_get_sell_price')}</Button></div>
             <div><Button onClick={()=>{this.onBuyInc(10)}} bsStyle="primary">{lang.t('test_buy')}</Button></div>
+            <div><Button onClick={()=>{this.onSellInc(10)}} bsStyle="primary">{lang.t('test_sell')}</Button></div>
             <div><Button onClick={()=>{this.onApprove(10)}} bsStyle="primary">{lang.t('test_approve')}</Button></div>
             <div><FormControl
               type="text"
