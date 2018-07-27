@@ -32,13 +32,13 @@ export default  class TestPage extends Component {
 
   getIncenseContract(){
     let web3 = this.getWeb3();
-    let {abi,address}=require('./IncenseContract');
+    let {abi,address}=require('./web3/IncenseContract');
     return new web3.eth.Contract(abi, address);
   }
 
   getMercyContract(){
     let web3 = this.getWeb3();
-    let {abi,address}=require('./MercyContract');
+    let {abi,address}=require('./web3/MercyContract');
     return new web3.eth.Contract(abi, address);
   }
 
@@ -84,7 +84,7 @@ export default  class TestPage extends Component {
 
   onApprove(amount){
     let contract = this.getIncenseContract();
-    let {address}=require('./MercyContract');
+    let {address}=require('./web3/MercyContract');
     contract.methods.approve(address,amount).send({from:this.state.wallet}).on('receipt',(err,res)=>{
       alert('approved amount increased');
     });

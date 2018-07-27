@@ -1,6 +1,6 @@
 import React from 'react';
 import Web3 from 'web3';
-import './App.css';
+import '../App.css';
 
 function getWallet(cb) {
     if (window.web3 && window.web3.currentProvider.isMetaMask) {
@@ -23,6 +23,12 @@ function getIncenseContract() {
     return new web3.eth.Contract(abi, address);
 }
 
+function getExchangeContract(){
+  let web3 = getWeb3();
+  let {abi, address} = require('./ExchangeContract');
+  return new web3.eth.Contract(abi, address);
+}
+
 function getMercyContract() {
     let web3 = getWeb3();
     let {abi, address} = require('./MercyContract');
@@ -36,28 +42,22 @@ function getBalance(wallet,cb) {
 }
 
 function getSellPrice(wallet,cb) {
-    let contract = getIncenseContract();
+    let contract = getExchangeContract();
     contract.methods.getSellPrice().call({from: wallet}, cb);
 }
 
 function getBuyPrice(wallet,cb) {
-    let contract = getIncenseContract();
+    let contract = getExchangeContract();
     contract.methods.getBuyPrice().call({from: wallet}, cb);
 }
 
-function getUserStatus(wallet,cb) {
-    let contract = getIncenseContract();
-    contract.methods.getUserStatus().call({from: wallet}, cb);
-}
-
-
 function buyInc(wallet,buyWei,amount, cb) {
-    let contract = getIncenseContract();
+    let contract = getExchangeContract();
     contract.methods.buy().send({value: buyWei * amount, from: wallet}).on('receipt', cb);
 }
 
 function sellInc(wallet,amount, cb) {
-    let contract = getIncenseContract();
+    let contract = getExchangeContract();
     contract.methods.sell(amount).send({from: wallet}).on('receipt', cb);
 }
 
@@ -116,7 +116,8 @@ function getGameStatus(wallet,cb){
 export default {
     getWallet: getWallet,
     getGameStatus:getGameStatus,
-    getUserStatus:getUserStatus,
     bid: bid,
+  getBuyPrice:getBuyPrice,
+  getBalance:getBalance,
     approve: approve
 };

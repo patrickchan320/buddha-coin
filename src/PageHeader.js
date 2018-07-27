@@ -39,10 +39,10 @@ export default class PageHeader extends Component {
     }
 
     render() {
-        let balance = (<Col xs={2}><img alt={lang.t('icon_inc')} className="header-icon" src={require('./images/inc.png')}/>{lang.t('head_balance', {balance: this.props.balance})}</Col>);
-        let share = (<Col xs={2}><img  alt={lang.t('icon_share')} className="header-icon" src={require('./images/share.png')}/>{this.props.share}</Col>);
-        let login = (<Col xs={2} style={{textAlign:'right'}}><a href="#register">{lang.t('head_register')}</a></Col>);
-        let space = (<Col xs={4}/>);
+        let balance = (<Col xs={4} md={2} lg={2} sm={3}><img alt={lang.t('icon_inc')} className="header-icon" src={require('./images/inc.png')}/>{lang.t('head_balance', {balance: this.props.balance})}</Col>);
+        let share = (<Col xs={4} md={2} lg={2} sm={3}><img  alt={lang.t('icon_share')} className="header-icon" src={require('./images/share.png')}/>{this.props.share}</Col>);
+        let login = (<Col xs={2} md={2} lg={2} sm={3} style={{textAlign:'right'}}><a href="#register">{lang.t('head_register')}</a></Col>);
+        let space = (<Col xs={0} md={2} lg={2} sm={0}/>);
 
         let mid=this.props.loggedIn ? balance: space;
         let last=this.props.loggedIn?share:login;
@@ -51,11 +51,11 @@ export default class PageHeader extends Component {
             <div className="page-top">
                 <Grid>
                     <Row>
-                        <Col xs={2}>
+                        <Col xs={4} md={2} lg={2} sm={3}>
                             <img className="header-icon" alt={lang.t('icon_time')} src={require('./images/time.png')}/><span
                             id="remaining_time">{utils.renderRemainingTime(this.props.endTime)}</span>
                         </Col>
-                        <Col xs={2}>
+                        <Col xs={4} md={2} lg={2} sm={3}>
                             <img className="header-icon" alt={lang.t('icon_eth')}
                                  src={require('./images/eth.png')}/>{lang.t('head_price', {price: this.props.buy})}
                         </Col>

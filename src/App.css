@@ -14,6 +14,22 @@
   opacity: 0.2;
   z-index:-100;
 }
+.dialog-message{
+  margin-top: 100px;
+}
+.dialog-image{
+  width:300px;
+  height:auto;
+  vertical-align: bottom;
+}
+
+.modal-dialog{
+  width:500px;
+  background-color: #ffffff66;
+  height:200px;
+  box-shadow:0 0;
+  border: 0;
+}
 
 .header-icon{
   width:16px;
@@ -72,6 +88,10 @@ a:hover{
   height: 150px;
   padding: 20px;
   color: white;
+}
+
+.container{
+  width:100%;
 }
 
 .contribute-btn{
