@@ -14,21 +14,36 @@
   opacity: 0.2;
   z-index:-100;
 }
+
+.clickable{
+  cursor:pointer;
+}
 .dialog-message{
-  margin-top: 100px;
+  margin: auto;
 }
 .dialog-image{
-  width:300px;
-  height:auto;
+  width:auto;
+  height:180px;
   vertical-align: bottom;
+}
+
+.text-js{
+  opacity: 0;
 }
 
 .modal-dialog{
   width:500px;
-  background-color: #ffffff66;
+  padding:10px;
+  background-color: #ffffffcc;
   height:200px;
+  margin-top: 200px;
+  margin-left:auto;
+  margin-right:auto;
   box-shadow:0 0;
-  border: 0;
+  border: 1px solid #cccccc;
+  -webkit-border-radius:5px ;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
 }
 
 .header-icon{
@@ -40,10 +55,12 @@
 .jumbo{
   font-size:48px;
   margin:auto;
+  margin-top:40px;
+  margin-bottom:40px;
 }
 body{
   color:#555555;
-  text-shadow: 0.5px 0.5px #000000;
+  /*text-shadow: 0.5px 0.5px #000000;*/
   font-size:16px;
   font-family: 'Noto Sans T Chinese',sans-serif;
 }
@@ -64,14 +81,16 @@ a:hover{
   vertical-align: middle;
 }
 
+.page-top span{
+  margin:5px;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
 }
 .main-pot{
   font-size:72px;
-  margin-top: 60px;
-  margin-bottom:60px;
   color:#555555;
 }
 .staff{
@@ -81,6 +100,11 @@ a:hover{
 
 .main-content{
   padding-top:100px;
+}
+
+.dialog-register input{
+  margin-top:10px;
+  margin-bottom:10px;
 }
 
 .App-header {
@@ -95,8 +119,15 @@ a:hover{
 }
 
 .contribute-btn{
-  width:30%;
+  width:200px;
   transition: all 0.2s ease-in-out;
+}
+
+.pot-icon{
+  width:auto;
+  padding:20px;
+  margin:10px;
+  height:120px;
 }
 
 .contribute-btn:hover{

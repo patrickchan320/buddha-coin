@@ -1,5 +1,5 @@
 module.exports={
-  address:'0x1f93eabe617a6bacd43fc3a209e483734c300a1d',
+  address:'0xf0075794d44a1a36b5cd899d9305f0f153c50f44',
   abi: [
     {
       "constant": true,
@@ -226,6 +226,25 @@ module.exports={
     },
     {
       "constant": true,
+      "inputs": [
+        {
+          "name": "testUserName",
+          "type": "bytes32"
+        }
+      ],
+      "name": "isUsernameTaken",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
       "inputs": [],
       "name": "getGameStatus",
       "outputs": [
@@ -247,6 +266,10 @@ module.exports={
         },
         {
           "name": "gamePot",
+          "type": "uint256"
+        },
+        {
+          "name": "bonus",
           "type": "uint256"
         }
       ],

@@ -1,5 +1,5 @@
 module.exports={
-  address:'0x5fec94a34068474338ced9d20ba4021be00d75a0',
+  address:'0xdcfddf13ebe7b1cfb43590916476afc710639e84',
   abi: [
     {
       "constant": true,
@@ -104,6 +104,40 @@ module.exports={
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "wallet",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "BuyEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "wallet",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "SellEvent",
+      "type": "event"
     },
     {
       "constant": false,
