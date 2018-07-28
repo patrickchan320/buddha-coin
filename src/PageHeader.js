@@ -51,6 +51,8 @@ export default class PageHeader extends Component {
     }
   }
 
+
+
   render() {
     this.shouldTimerGo();
     let balance = (<span className="clickable" onClick={this.props.onBuy}><img alt={lang.t('icon_inc')} className="header-icon"

@@ -1,5 +1,6 @@
+let {contracts} =require('./network');
 module.exports={
-  address:'0xdf957f33989a67b626eab9f2ca24f85bcf53c261',
+  address: contracts.token,
   abi: [
     {
       "constant": true,

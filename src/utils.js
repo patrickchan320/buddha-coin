@@ -20,6 +20,14 @@ function renderRemainingTime(t) {
   return h + ':' + m + ':' + t;
 }
 
+let newString="";
+function typeLater(thhis,typingSpeed,i, char) {
+  setTimeout(function () {
+    newString += char;
+    thhis.text(newString);
+  }, i * typingSpeed);
+}
+
 function autoType(elementClass, typingSpeed) {
   let thhis = $(elementClass);
   thhis.css({
@@ -32,19 +40,14 @@ function autoType(elementClass, typingSpeed) {
   let text='testing for it';
   let amntOfChars = text.length;
   console.log('length of text='+amntOfChars);
-  let newString = "";
+  newString = "";
   thhis.text("|");
   setTimeout(function () {
     thhis.css("opacity", 1);
     thhis.prev().removeAttr("style");
     thhis.text("");
     for (let i = 0; i < amntOfChars; i++) {
-      (function (i, char) {
-        setTimeout(function () {
-          newString += char;
-          thhis.text(newString);
-        }, i * typingSpeed);
-      })(i + 1, text[i]);
+      typeLater(thhis,typingSpeed,i + 1, text[i]);
     }
   }, 1500);
 }

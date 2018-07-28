@@ -1,5 +1,7 @@
+let {contracts} =require('./network');
+
 module.exports={
-  address:'0x6306359fb52bd3abe57e1c131acf819f80f6694b',
+  address: contracts.mercy,
   abi: [
     {
       "constant": true,
@@ -78,6 +80,12 @@ module.exports={
         }
       ],
       "name": "BidEvent",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "StartEvent",
       "type": "event"
     },
     {
@@ -352,8 +360,8 @@ module.exports={
           "type": "uint256"
         },
         {
-          "name": "userSectName",
-          "type": "bytes32"
+          "name": "userSectId",
+          "type": "uint256"
         }
       ],
       "payable": false,

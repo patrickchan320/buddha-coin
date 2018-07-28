@@ -1,5 +1,6 @@
+let {contracts} =require('./network');
 module.exports={
-  address:'0x687c98578786a83cd4bb8a61e74a909e1d6d9568',
+  address:contracts.exchange,
   abi: [
     {
       "constant": true,
