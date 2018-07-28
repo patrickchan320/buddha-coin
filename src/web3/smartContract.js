@@ -52,6 +52,16 @@ function getBuyPrice(wallet, cb) {
   contract.methods.getBuyPrice().call({from: wallet}, cb);
 }
 
+function getSects(wallet,cb){
+  let contract=getMercyContract();
+  contract.methods.getSects().call({from:wallet},cb);
+}
+
+function getSectById(wallet,id,cb){
+  let contract=getMercyContract();
+  contract.methods.getSectById(id).call({from:wallet},cb);
+}
+
 function buyToken(wallet, buyWei, amount, cb) {
   let contract = getExchangeContract();
   let buyWeiBig=Big(buyWei);
@@ -92,12 +102,13 @@ function bid(wallet, cb) {
 }
 
 
-function register(wallet, username, referral, cb) {
+function register(wallet, username, referral,sect, cb,err) {
   let web3 = require('web3-utils');
   let contract = getMercyContract();
-  return contract.methods.register(web3.asciiToHex(username), web3.asciiToHex(referral))
-    .send({from: wallet}).on('receipt', cb);
+  return contract.methods.register(web3.asciiToHex(username), web3.asciiToHex(referral),sect)
+    .send({from: wallet}).on('receipt', cb).on('error',err);
 }
+
 
 
 // function restart(wallet, cb) {
@@ -132,6 +143,8 @@ export default {
   getBuyPrice: getBuyPrice,
   getSellPrice: getSellPrice,
   getBalance: getBalance,
+  getSects:getSects,
+  getSectById:getSectById,
   getAllowance:getAllowance,
   register: register,
   getWeb3:getWeb3,

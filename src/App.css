@@ -19,12 +19,22 @@
   cursor:pointer;
 }
 .dialog-message{
-  margin: auto;
+  position:absolute;
+  right:0;
+  top:0;
+  padding:20px;
+  width:300px;
+  height:100%;
+  text-align:left;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 .dialog-image{
-  width:auto;
-  height:180px;
-  vertical-align: bottom;
+  width:200px;
+  height:auto;
+  position:absolute;
+  bottom:0;
 }
 
 .text-js{
@@ -35,7 +45,7 @@
   width:500px;
   padding:10px;
   background-color: #ffffffcc;
-  height:200px;
+  height:250px;
   margin-top: 200px;
   margin-left:auto;
   margin-right:auto;
@@ -101,8 +111,22 @@ a:hover{
 .main-content{
   padding-top:100px;
 }
-
-.dialog-register input{
+.dialog-form{
+  padding:20px;
+  position:absolute;
+  right:0;
+  top:0;
+  width:300px;
+  height:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.dialog-form select{
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.dialog-form input{
   margin-top:10px;
   margin-bottom:10px;
 }
@@ -118,7 +142,7 @@ a:hover{
   width:100%;
 }
 
-.contribute-btn{
+.form-item{
   width:200px;
   transition: all 0.2s ease-in-out;
 }
@@ -130,7 +154,7 @@ a:hover{
   height:120px;
 }
 
-.contribute-btn:hover{
+.form-item:hover{
   box-shadow: 0 0 9px 6px #ffffcc;
 }
 

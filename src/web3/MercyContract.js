@@ -1,5 +1,5 @@
 module.exports={
-  address:'0xf0075794d44a1a36b5cd899d9305f0f153c50f44',
+  address:'0x6306359fb52bd3abe57e1c131acf819f80f6694b',
   abi: [
     {
       "constant": true,
@@ -81,6 +81,77 @@ module.exports={
       "type": "event"
     },
     {
+      "constant": true,
+      "inputs": [],
+      "name": "getSects",
+      "outputs": [
+        {
+          "name": "ids",
+          "type": "uint256[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "_id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSectById",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "name": "referralTokenRate",
+          "type": "uint256"
+        },
+        {
+          "name": "airDropRate",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "name": "name",
+          "type": "bytes32"
+        },
+        {
+          "name": "referralBonusRate",
+          "type": "uint256"
+        },
+        {
+          "name": "airDropRate",
+          "type": "uint256"
+        }
+      ],
+      "name": "addSect",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "constant": false,
       "inputs": [
         {
@@ -132,6 +203,10 @@ module.exports={
         {
           "name": "referrer",
           "type": "bytes32"
+        },
+        {
+          "name": "sectId",
+          "type": "uint256"
         }
       ],
       "name": "register",
@@ -269,8 +344,16 @@ module.exports={
           "type": "uint256"
         },
         {
-          "name": "bonus",
+          "name": "referralBonus",
           "type": "uint256"
+        },
+        {
+          "name": "userReferrals",
+          "type": "uint256"
+        },
+        {
+          "name": "userSectName",
+          "type": "bytes32"
         }
       ],
       "payable": false,

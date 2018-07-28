@@ -63,6 +63,10 @@ export default class PageHeader extends Component {
 
     let mid = this.props.loggedIn ? balance : '';
     let last = this.props.loggedIn ? share : login;
+    let bonus=this.props.loggedIn?<span className="clickable" onClick={this.props.onBonus}><img alt={lang.t('icon_bonus')} className="header-icon"
+                                                                                                src={require('./images/bonus.png')}/>{lang.t('head_bonus',{bonus:this.props.bonus})}</span>:'';
+    let referrals=this.props.loggedIn?<span className="clickable" onClick={this.props.onReferral}><img alt={lang.t('icon_referrals')} className="header-icon"
+                                                                                                       src={require('./images/referrals.png')}/>{lang.t('head_referrals',{referrals:this.props.referrals})}</span>:'';
     return (
       <div className="page-top">
         <span className="clickable" onClick={this.props.onTime}>
@@ -73,6 +77,9 @@ export default class PageHeader extends Component {
                    src={require('./images/eth.png')}/>{lang.t('head_price', {price: this.props.buy})}
             </span>
         {mid}
+
+        {bonus}
+        {referrals}
         {last}
       </div>);
 
