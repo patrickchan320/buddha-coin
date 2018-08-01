@@ -121,6 +121,7 @@ let lang = {
     'main_sorry':'請施主三思',
     'main_bidder':'予 {{bidder}}',
     'main_pot': '{{pot}} ETH',
+    'main_register_taken':'已有其他善信使用這名字',
     'main_explain_time':'殿中長明燈皆由善信香油資火，燈滅剎那觀音借庫予有緣人',
     'main_explain_price':'施主若要壇香，可向貧僧購買，每支 {{buy}} ETH；貧僧亦可回購壇香手上壇香，每支 {{sell}} ETH',
     'main_dialogue_image':'',

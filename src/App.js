@@ -181,8 +181,13 @@ class App extends Component {
       return this.info(lang.t('main_quantity_error'));
     }
     this.info(lang.t('main_processing'));
-    this.doGetBuyPrice(() => {
-      smart.buy(this.state.wallet, this.state.buyWei, q, (receipt) => {
+    smart.getTotalCost(this.state.wallet,q,(err,res) => {
+      if(!res){
+        return;
+      }
+      let wei = new Big(res);
+      console.log(wei.toString());
+      smart.buy(this.state.wallet, q,wei, (receipt) => {
         if (receipt) {
           setTimeout(() => {
             this.doGetBalance();
@@ -206,15 +211,21 @@ class App extends Component {
       this.info(lang.t('main_register_sect'));
       return;
     }
-    // console.log(this.state.registerSect);
-    smart.register(this.state.wallet, this.state.registerUsername, this.state.registerReferer, this.state.registerSect, (receipt) => {
-      this.info(lang.t('main_register_success'));
-      setTimeout(() => {
-        this.doGetGameStatus();
-      }, 5000);
-    }, (err) => {
-      this.info(lang.t('main_transaction_cancel'));
+    smart.isUsernameTaken(this.state.wallet,this.state.registerUsername,(err,res)=>{
+      if(res){
+        this.info('main_register_taken');
+      }else{
+        smart.register(this.state.wallet, this.state.registerUsername, this.state.registerReferer, this.state.registerSect, (receipt) => {
+          this.info(lang.t('main_register_success'));
+          setTimeout(() => {
+            this.doGetGameStatus();
+          }, 5000);
+        }, (err) => {
+          this.info(lang.t('main_transaction_cancel'));
+        });
+      }
     });
+
   }
 
   onUsernameChange(n) {
@@ -249,7 +260,6 @@ class App extends Component {
         smart.win(this.state.wallet,(err,res)=>{
           this.info(lang.t('main_congrats'));
           setTimeout(()=>{this.doGetGameStatus();},5000);
-
         });
       }else{
         this.info(lang.t('main_not_winner'));
@@ -259,10 +269,12 @@ class App extends Component {
         this.onOpenBuy();
       } else {
         smart.getAllowance(this.state.wallet, (err, res) => {
+          console.log('got allowance '+res+' '+err);
           if (res > 0) {
             this.bidAndRefresh();
           } else {
             this.info(lang.t('main_allow_approve'));
+            console.log('going to approve '+this.state.balance);
             smart.approve(this.state.wallet, this.state.balance, (receipt) => {
               setTimeout(() => {
                 this.bidAndRefresh();

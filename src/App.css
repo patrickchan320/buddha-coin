@@ -15,6 +15,16 @@
   z-index:-100;
 }
 
+#root{
+  overflow-y:scroll;
+  width:100%;
+  height:100%;
+  position:absolute;
+  top:0;
+  left: 0;
+}
+
+
 .language-bar{
   position:absolute;;
   right:0;
@@ -116,6 +126,7 @@ a:hover{
 
 .main-content{
   padding-top:100px;
+  padding-bottom:50px;
 }
 .dialog-form{
   padding:20px;
