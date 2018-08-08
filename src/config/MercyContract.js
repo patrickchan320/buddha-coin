@@ -89,6 +89,23 @@ module.exports={
       "type": "event"
     },
     {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "username",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "name": "potSize",
+          "type": "uint256"
+        }
+      ],
+      "name": "WinEvent",
+      "type": "event"
+    },
+    {
       "constant": true,
       "inputs": [],
       "name": "getSects",
@@ -301,6 +318,44 @@ module.exports={
         {
           "name": "gameOver",
           "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMembersBySect",
+      "outputs": [
+        {
+          "name": "members",
+          "type": "address[]"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMemberCountBySect",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
         }
       ],
       "payable": false,

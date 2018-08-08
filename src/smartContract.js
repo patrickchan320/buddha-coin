@@ -19,7 +19,7 @@ function getWeb3() {
     }
     return web3;
   }else{
-    return null;
+    return new Web3(config.wsProviderUrl);
   }
 }
 
@@ -81,7 +81,7 @@ function isUsernameTaken(wallet, username, cb){
 
 function buyToken(wallet, amount,value, cb) {
   let contract = getExchangeContract();
-  return contract.methods.buy(amount).send({value: value, from: wallet}).on('confirmation', (c,r)=>{
+  return contract.methods.buy(amount).send({value: value, from: wallet,gas:config.gas}).on('confirmation', (c,r)=>{
     if(c===REQUIRED_CONFIRMATION){
       cb(r);
     }
@@ -90,7 +90,7 @@ function buyToken(wallet, amount,value, cb) {
 
 function sellToken(wallet, amount, cb) {
   let contract = getExchangeContract();
-  return contract.methods.sell(amount).send({from: wallet}).on('confirmation', (c,r)=>{
+  return contract.methods.sell(amount).send({from: wallet,gas:config.gas}).on('confirmation', (c,r)=>{
     if(c===REQUIRED_CONFIRMATION){
       cb(r);
     }
@@ -100,7 +100,7 @@ function sellToken(wallet, amount, cb) {
 function approve(wallet, amount, cb) {
   let contract = getIncenseContract();
   let {address} = require('./config/MercyContract');
-  return contract.methods.increaseApproval(address, amount).send({from: wallet}).on('confirmation', (c,r)=>{
+  return contract.methods.increaseApproval(address, amount).send({from: wallet,gas:config.gas}).on('confirmation', (c,r)=>{
     if(c===REQUIRED_CONFIRMATION){
       cb(r);
     }
@@ -137,7 +137,7 @@ function listenStartEvent(cb){
 
 function bid(wallet, cb) {
   let contract = getMercyContract();
-  return contract.methods.bid().send({from: wallet}).on('confirmation', (c,r)=>{
+  return contract.methods.bid().send({from: wallet,gas:config.gas}).on('confirmation', (c,r)=>{
     if(c===REQUIRED_CONFIRMATION){
       cb(r);
     }
@@ -148,8 +148,9 @@ function bid(wallet, cb) {
 function register(wallet, username, referral,sect, cb,err) {
   let web3 = require('web3-utils');
   let contract = getMercyContract();
+  console.log(web3.asciiToHex(username)+' >'+web3.asciiToHex(referral)+' >'+sect);
   return contract.methods.register(web3.asciiToHex(username), web3.asciiToHex(referral),sect)
-    .send({from: wallet}).on('confirmation', (c,r)=>{
+    .send({from: wallet,gas:config.gas}).on('confirmation', (c,r)=>{
       if(c===REQUIRED_CONFIRMATION){
         cb(r);
       }
@@ -165,7 +166,7 @@ function register(wallet, username, referral,sect, cb,err) {
 
 function win(wallet, cb) {
   let contract = getMercyContract();
-  return contract.methods.win().send({from: wallet}).on('confirmation', (c,r)=>{
+  return contract.methods.win().send({from: wallet,gas:config.gas}).on('confirmation', (c,r)=>{
     if(c===REQUIRED_CONFIRMATION){
       cb(r);
     }

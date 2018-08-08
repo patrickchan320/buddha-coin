@@ -1,11 +1,13 @@
 module.exports={
   wsProviderUrl:'ws://localhost:8545',
   wsEnabled:true,
+  // providerUrl:'https://localhost:8545',
+  gas:600000,
   network:'private',
   contracts:{
-    mercy:'0xbc065b4b695ff0032008e246129157b13707fe46',
-    exchange:'0xb35bcda9feffc9a659c2b38682b1889100279831',
-    token:'0x7bb3252889cf45f168e13e899c33546aaf827fed'
+    mercy:'0xfae2015e6af0cded62463292d5d63835d265cc59',
+    exchange:'0x2ab9c62abd4677f54d729f14561526d430db08a8',
+    token:'0x31cc1c4c0b09e99fb36ed6e099219b9a546c7c94'
   }
 };
 //

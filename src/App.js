@@ -166,7 +166,14 @@ class App extends Component {
   }
 
   componentDidMount() {
-    smart.getWeb3().eth.net.getNetworkType((err, netId) => {
+    let web3=smart.getWeb3();
+
+    if(!web3){
+      return;
+    }
+
+    web3.eth.net.getNetworkType((err, netId) => {
+
       if(netId===config.network){
         this.init();
       }else{
@@ -213,14 +220,16 @@ class App extends Component {
     }
     smart.isUsernameTaken(this.state.wallet,this.state.registerUsername,(err,res)=>{
       if(res){
-        this.info('main_register_taken');
+        this.info(lang.t('main_register_taken'));
       }else{
+        this.info(lang.t('main_processing'));
         smart.register(this.state.wallet, this.state.registerUsername, this.state.registerReferer, this.state.registerSect, (receipt) => {
           this.info(lang.t('main_register_success'));
           setTimeout(() => {
             this.doGetGameStatus();
           }, 5000);
         }, (err) => {
+          console.log(err);
           this.info(lang.t('main_transaction_cancel'));
         });
       }
@@ -249,6 +258,10 @@ class App extends Component {
   }
 
   onOpenBuy() {
+    if(!this.state.loggedIn){
+      this.onOpenRegister();
+      return;
+    }
     this.setState({showBuy: true});
     this.openModal();
   }
@@ -327,9 +340,14 @@ class App extends Component {
         console.log(err);
         return;
       }
-      console.log('got bid event');
       this.doGetGameStatus();
-      this.info(lang.t('main_bid_event'));
+      if(res&&res.returnValues && res.returnValues.username){
+        let web3 = require('web3-utils');
+        let uname = web3.hexToAscii(res.returnValues.username).replace(/\u0000/g, '');
+        this.info(lang.t('main_bid_event',{username:uname}));
+        setTimeout(()=>{this.closeModal()},3000);
+      }
+
     });
   }
 
